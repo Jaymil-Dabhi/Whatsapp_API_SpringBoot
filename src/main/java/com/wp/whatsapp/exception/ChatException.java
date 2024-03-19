@@ -1,0 +1,8 @@
+package com.wp.whatsapp.exception;
+
+public class ChatException extends Exception {
+
+	public ChatException(String message) {
+		super(message);
+	}
+}
