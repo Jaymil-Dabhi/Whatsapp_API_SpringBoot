@@ -63,7 +63,8 @@ public class AuthController {
 		String jwt=tokenProvider.generateToken(authentication);
 		
 		AuthResponse res=new AuthResponse(jwt, true);
-		return new ResponseEntity<AuthResponse>(res,HttpStatus.ACCEPTED);
+		res.setJwt(jwt);
+		return new ResponseEntity<>(res,HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/signin")
@@ -74,8 +75,6 @@ public class AuthController {
 		
 		Authentication authentication=authenticate(email,password);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		
-		
 		
 		String jwt=tokenProvider.generateToken(authentication);
 		

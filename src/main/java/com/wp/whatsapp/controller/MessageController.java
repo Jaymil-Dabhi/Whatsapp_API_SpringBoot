@@ -57,7 +57,7 @@ public class MessageController {
 	}
 	
 	@DeleteMapping("/{messageId}")
-	public ResponseEntity<ApiResponse> deleteMessageHandler(@PathVariable Integer messageId, @RequestHeader("Authorization") String jwt) throws UserException,       MessageException{
+	public ResponseEntity<ApiResponse> deleteMessageHandler(@PathVariable Integer messageId, @RequestHeader("Authorization") String jwt) throws UserException,MessageException{
 		
 		User user=userService.findUserProfile(jwt);
 		

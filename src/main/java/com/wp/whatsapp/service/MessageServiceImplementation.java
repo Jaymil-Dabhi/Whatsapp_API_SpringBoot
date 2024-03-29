@@ -62,7 +62,8 @@ public class MessageServiceImplementation implements MessageService {
         Optional<Message> opt=messageRepository.findById(messageId);
         
         if(opt.isPresent()) {
-        	return opt.get();        }
+        	return opt.get();       
+        }
         
 		throw new MessageException("message not found with id "+messageId);
 	}
