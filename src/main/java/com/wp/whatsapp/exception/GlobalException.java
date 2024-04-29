@@ -59,7 +59,7 @@ public class GlobalException {
 	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorDetail> otherExceptionHandler(Exception e, WebRequest req){
-		logger.error("An error occurred: {}", e.getMessage(), e);
+//		logger.error("An error occurred: {}", e.getMessage(), e);
 		ErrorDetail err=new ErrorDetail(e.getMessage(),req.getDescription(false),LocalDateTime.now());
 		
 		return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);

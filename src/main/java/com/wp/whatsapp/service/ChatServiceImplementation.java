@@ -26,9 +26,15 @@ public class ChatServiceImplementation implements ChatService {
 	@Override
 	public Chat createChat(User reqUser, Integer userId) throws UserException {
 
-        User user=userService.findUserById(userId);
+        User user=userService.findUserById(userId);	
+        
+//        String fullName = user.getFull_name();
+        
+        System.out.println("User name: "+ user);
         
         Chat isChatExist=chatRepository.findSingleChatByUserIds(user, reqUser);
+        
+        
         if(isChatExist!=null) {
         	return isChatExist;
         }

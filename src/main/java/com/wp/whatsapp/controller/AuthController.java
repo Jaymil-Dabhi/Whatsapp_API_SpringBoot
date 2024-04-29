@@ -68,10 +68,10 @@ public class AuthController {
 	}
 	
 	@GetMapping("/signin")
-	public ResponseEntity<AuthResponse> loginHandler(@RequestHeader LoginRequest req){
+	public ResponseEntity<AuthResponse> loginHandler(@RequestBody User user){
 		
-		String email=req.getEmail();
-		String password=req.getPassword();
+		String email=user.getEmail();
+		String password=user.getPassword();
 		
 		Authentication authentication=authenticate(email,password);
 		SecurityContextHolder.getContext().setAuthentication(authentication);

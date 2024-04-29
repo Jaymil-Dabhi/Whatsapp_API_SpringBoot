@@ -37,9 +37,9 @@ public class UserServiceImplementation implements UserService {
 	public User findUserProfile(String jwt) throws UserException {
 		String email=tokenProvider.getEmailFromToken(jwt);
 		
-		if(email!=null) {
-			throw new BadCredentialsException("received invalid token---");
-		}
+//		if(email!=null) {
+//			throw new BadCredentialsException("received invalid token---");
+//		}
 		User user=userRepository.findByEmail(email);
 		
 		if(user==null) {
@@ -52,6 +52,8 @@ public class UserServiceImplementation implements UserService {
 	@Override
 	public User updateUser(Integer userId, UpdateUserRequest req) throws UserException {
 		User user=findUserById(userId);
+		String fullName = user.getFull_name();
+		System.out.println("Full name: " + fullName);
 		
 		if(req.getFull_name()!=null) {
 			user.setFull_name(req.getFull_name());

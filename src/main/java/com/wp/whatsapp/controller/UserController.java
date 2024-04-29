@@ -43,14 +43,19 @@ public class UserController {
 		return new ResponseEntity<List<User>>(users,HttpStatus.OK);
 	}
 	
-	@PutMapping("/update")
-	public ResponseEntity<ApiResponse>updateUserHandler(@RequestBody UpdateUserRequest req, @RequestHeader("Authorization") String token) throws UserException{
+	@PutMapping("/update/{userId}")
+	public ResponseEntity<ApiResponse>updateUserHandler(@PathVariable Integer userId, @RequestBody UpdateUserRequest req, @RequestHeader("Authorization") String token) throws UserException{
+		System.out.println("Update user request: " + req);
 		User user=userService.findUserProfile(token);
+		System.out.println("User: " + user);
+		if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 		
 		userService.updateUser(user.getId(), req);
 		
 		ApiResponse res=new ApiResponse("user updated successfully",true);
 		
-		return new ResponseEntity<ApiResponse>(res,HttpStatus.ACCEPTED);
+		return new ResponseEntity<ApiResponse>(res,HttpStatus.OK);
 	}
 }	
